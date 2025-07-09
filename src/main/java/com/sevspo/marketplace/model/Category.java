@@ -13,7 +13,7 @@ public class Category {
     @Column(nullable = false, unique = true)
     private String name;
 
-    // Getters and Setters
+    
     public Long getId() {
         return id;
     }
