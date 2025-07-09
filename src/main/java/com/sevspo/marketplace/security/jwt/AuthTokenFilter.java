@@ -21,7 +21,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-// PERBAIKAN 1: Jadikan filter ini sebuah Spring Component agar dependency injection (Autowired) berfungsi dengan andal.
+
 @Component
 public class AuthTokenFilter extends OncePerRequestFilter {
 
@@ -41,10 +41,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         try {
             String jwt = parseJwt(request);
 
-            // Filter ini akan berjalan di setiap request.
-            // Namun, ia hanya akan melakukan sesuatu jika ada token JWT yang valid.
-            // Jika tidak ada token (seperti saat registrasi), ia tidak akan melakukan apa-apa
-            // dan menyerahkan keputusan ke filter berikutnya dalam rantai (SecurityFilterChain).
+           
             if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
                 String username = jwtUtils.getUserNameFromJwtToken(jwt);
 
@@ -62,7 +59,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             logger.error("Cannot set user authentication: {}", e.getMessage());
         }
 
-        // Lanjutkan ke filter berikutnya dalam rantai keamanan.
+        
         filterChain.doFilter(request, response);
     }
 
