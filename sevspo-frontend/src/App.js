@@ -1,11 +1,9 @@
-// App.js
-
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 
-// Import komponen halaman
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
@@ -15,11 +13,11 @@ import RegisterPage from "./pages/RegisterPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import CartPage from "./pages/CartPage";
 
-// --- TAMBAHKAN IMPORT INI ---
+
 import CheckoutPage from "./pages/CheckoutPage";
 import PaymentStatusPage from "./pages/PaymentStatusPage";
 import OrderHistoryPage from "./pages/OrderHistoryPage";
-// -----------------------------
+
 
 function App() {
   return (
@@ -36,12 +34,10 @@ function App() {
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/admin" element={<AdminDashboard />} />
-
-                {/* --- TAMBAHKAN ROUTE INI --- */}
                 <Route path="/checkout" element={<CheckoutPage />} />
                 <Route path="/orders" element={<OrderHistoryPage />} />
                 <Route path="/payment/status" element={<PaymentStatusPage />} />
-                {/* ----------------------------- */}
+                {}
               </Routes>
             </main>
             <Footer />
