@@ -13,7 +13,7 @@ const Gallery = ({ images }) => {
 
   return (
     <>
-      {/* Modal Lightbox */}
+     
       {selectedImage && (
         <div
           className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 p-4"
@@ -30,7 +30,7 @@ const Gallery = ({ images }) => {
         </div>
       )}
 
-      {/* Grid Galeri */}
+     
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {images.map((image) => (
           <div
