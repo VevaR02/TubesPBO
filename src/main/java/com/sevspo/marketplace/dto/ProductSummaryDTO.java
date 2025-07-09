@@ -8,7 +8,7 @@ class ProductSummaryDTO {
         this.name = name;
     }
 
-    // Getter & Setter
+   
     public String getName() {
         return name;
     }
