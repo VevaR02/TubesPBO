@@ -23,10 +23,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
-// --- PERBAIKAN UTAMA ---
-// Anotasi ini adalah cara yang lebih kuat untuk menangani relasi dua arah.
-// Ini akan memberi ID unik pada setiap objek Order saat diubah menjadi JSON,
-// sehingga memutus perulangan tak terbatas secara efektif.
+
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
@@ -42,7 +39,7 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    // Anotasi @JsonManagedReference yang sebelumnya ada di sini, sekarang dihapus.
+    
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items = new ArrayList<>();
 
