@@ -18,7 +18,6 @@ export default function LoginPage() {
       await login(username, password);
       navigate("/");
     } catch (err) {
-      // PERBAIKAN: Mengambil pesan error yang spesifik dari backend
       const errorMessage =
         (err.response && err.response.data && err.response.data.message) ||
         "Login gagal. Periksa kembali username dan password Anda.";
