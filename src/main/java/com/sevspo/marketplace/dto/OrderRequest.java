@@ -7,7 +7,7 @@ public class OrderRequest {
     private String shippingAddress;
     private List<OrderItemDto> items;
 
-    // Getters and Setters for OrderRequest
+    
     public String getShippingAddress() {
         return shippingAddress;
     }
@@ -29,7 +29,7 @@ public class OrderRequest {
         private Long productId;
         private int quantity;
 
-        // Getters and Setters for OrderItemDto
+       
         public Long getProductId() {
             return productId;
         }
