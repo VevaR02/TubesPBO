@@ -9,7 +9,7 @@ public class LoginRequest {
     @NotBlank
     private String password;
 
-    // Getters
+
     public String getUsername() {
         return username;
     }
@@ -18,7 +18,7 @@ public class LoginRequest {
         return password;
     }
 
-    // Setters
+
     public void setUsername(String username) {
         this.username = username;
     }
