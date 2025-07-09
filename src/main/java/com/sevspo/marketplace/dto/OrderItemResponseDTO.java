@@ -9,7 +9,7 @@ class OrderItemResponseDTO {
     private int quantity;
     private BigDecimal priceAtPurchase;
 
-    // Getters & Setters
+   
     public Long getId() {
         return id;
     }
