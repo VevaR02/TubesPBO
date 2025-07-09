@@ -8,45 +8,32 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ================================================= */
-/* == SOLUSI FINAL CSS UNTUK SLICK CAROUSEL == */
-/* ================================================= */
 
-/* Selector ini lebih spesifik, sehingga akan menang melawan style default */
 .slick-slider .slick-arrow {
-  /* --- Pengaturan Posisi & Lapisan --- */
   z-index: 30 !important;
-  /* z-index sangat tinggi agar selalu di atas */
   top: 50%;
   transform: translateY(-50%);
-
-  /* --- Pengaturan Ukuran & Tampilan --- */
   width: 40px;
   height: 40px;
   border-radius: 50%;
   display: block !important;
 }
 
-/* --- Atur posisi untuk masing-masing panah --- */
+
 .slick-slider .slick-prev {
   left: 15px;
-  /* Tarik dari -25px ke posisi di dalam gambar */
 }
 
 .slick-slider .slick-next {
   right: 15px;
-  /* Posisikan di dalam gambar */
 }
 
-/* --- Paksa ikon di dalam panah agar terlihat --- */
 .slick-slider .slick-arrow::before {
-  /* Reset font-size dari 0px ke ukuran yang terlihat */
   font-size: 20px !important;
   font-family: 'slick' !important;
-  /* Gunakan font ikon dari library */
+  
 }
 
-/* --- Atur posisi untuk titik navigasi --- */
 .slick-slider .slick-dots {
   bottom: 15px;
   z-index: 30;
