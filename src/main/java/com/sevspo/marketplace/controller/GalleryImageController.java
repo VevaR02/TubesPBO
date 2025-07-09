@@ -24,13 +24,13 @@ public class GalleryImageController {
     @Autowired
     private FileStorageService fileStorageService;
 
-    // READ (Sudah ada dan bersifat publik)
+    
     @GetMapping
     public List<GalleryImage> getAllGalleryImages() {
         return galleryImageRepository.findAll();
     }
 
-    // CREATE (Sudah ada dan hanya untuk ADMIN)
+    
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public GalleryImage createGalleryImage(@RequestParam("caption") String caption, @RequestParam("file") MultipartFile file) throws IOException {
@@ -47,7 +47,7 @@ public class GalleryImageController {
         return galleryImageRepository.save(galleryImage);
     }
 
-    // UPDATE (Endpoint baru untuk mengubah caption, hanya untuk ADMIN)
+   
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<GalleryImage> updateGalleryImage(@PathVariable Long id, @RequestBody GalleryImage imageDetails) {
@@ -59,7 +59,7 @@ public class GalleryImageController {
                 }).orElse(ResponseEntity.notFound().build());
     }
 
-    // DELETE (Sudah ada dan hanya untuk ADMIN)
+   
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteGalleryImage(@PathVariable Long id) {
