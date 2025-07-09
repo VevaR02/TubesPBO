@@ -76,8 +76,6 @@ public class CarouselItem {
         this.createdAt = createdAt;
     }
 
-    // PERBAIKAN: Mengganti nama setter dari setIsActive menjadi setActive
-    // Ini adalah konvensi standar yang dipahami oleh Jackson.
     public void setActive(boolean active) {
         this.isActive = active;
     }
