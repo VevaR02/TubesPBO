@@ -29,8 +29,8 @@ public class Product {
     private Integer stock;
     private String imageUrl;
 
-    // PERBAIKAN: Menggunakan relasi ManyToOne ke entitas Category
-    @ManyToOne(fetch = FetchType.EAGER) // Eager fetch agar data kategori selalu ikut
+    
+    @ManyToOne(fetch = FetchType.EAGER) 
     @JoinColumn(name = "category_id")
     private Category category;
 
