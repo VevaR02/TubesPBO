@@ -1,5 +1,3 @@
-// Navbar.js
-
 import React, { useState, useEffect, useRef } from "react";
 import logo from "../image/logo1.png";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -22,15 +20,13 @@ export default function Navbar() {
 
   const totalItems = cartItems.reduce((acc, item) => acc + item.qty, 0);
   const isAdmin = user?.roles.includes("ROLE_ADMIN");
-
-  // --- FUNGSI NAVIGASI BARU ---
   const handleAdminNav = (view) => {
-    // Navigasi ke halaman admin dengan parameter view
+    
     navigate(`/admin?view=${view}`);
-    setAdminDropdownOpen(false); // Selalu tutup dropdown setelah klik
+    setAdminDropdownOpen(false);
   };
 
-  // Efek untuk menutup dropdown saat URL berubah atau klik di luar area
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -50,7 +46,6 @@ export default function Navbar() {
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-2">
-          {/* ... (bagian logo dan link home/cart tidak berubah) ... */}
           <Link to="/" className="flex items-center space-x-2">
             <img
               src={logo}
@@ -115,8 +110,7 @@ export default function Navbar() {
                       </svg>
                     </button>
                     {isAdminDropdownOpen && (
-                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-                        {/* --- UBAH LINK INI --- */}
+                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50"> 
                         <a
                           onClick={() => handleAdminNav("pesanan")}
                           className="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
