@@ -46,8 +46,7 @@ public class WebSecurityConfig {
         return authProvider;
     }
 
-    // PERBAIKAN 2: Ini adalah bean yang hilang yang menyebabkan error.
-    // Bean ini secara eksplisit membuat AuthenticationManager tersedia untuk di-inject.
+   
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
@@ -72,8 +71,6 @@ public class WebSecurityConfig {
                 .requestMatchers("/api/files/**").permitAll()
                 .requestMatchers("/api/categories/**").permitAll()
                 .requestMatchers("/api/gallery-images").permitAll()
-                // --- PERUBAHAN KEAMANAN ---
-                // Endpoint untuk notifikasi pembayaran harus publik
                 .requestMatchers("/api/payments/notification").permitAll()
                 .anyRequest().authenticated()
                 );
