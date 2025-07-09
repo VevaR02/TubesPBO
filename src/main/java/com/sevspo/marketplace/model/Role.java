@@ -21,8 +21,7 @@ public class Role {
     @Column(length = 20)
     private Erole name;
 
-    // --- Getters and Setters Manual ---
-    // Pastikan semua metode ini ada persis seperti ini.
+  
     public Integer getId() {
         return id;
     }
@@ -31,7 +30,7 @@ public class Role {
         this.id = id;
     }
 
-    // Ini adalah metode yang paling penting yang dicari oleh compiler
+   
     public Erole getName() {
         return name;
     }
