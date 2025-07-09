@@ -21,10 +21,10 @@ export default function RegisterPage() {
       setSuccess("Registrasi berhasil! Anda akan dialihkan ke halaman login.");
       setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
-      // PERBAIKAN: Mengambil pesan error yang spesifik dari backend
+      
       const resMessage =
         (err.response && err.response.data) || err.message || err.toString();
-      // Jika resMessage masih berupa objek, ambil properti message-nya
+     
       setError(
         typeof resMessage === "object" ? resMessage.message : resMessage
       );
@@ -37,7 +37,7 @@ export default function RegisterPage() {
       <h2 className="text-2xl font-bold mb-6 text-center text-sevspo-dark">
         Daftar Akun Baru
       </h2>
-      {/* Tampilkan pesan error atau sukses */}
+     
       {error && (
         <div
           className="p-3 mb-4 text-sm text-red-700 bg-red-100 rounded-lg"
