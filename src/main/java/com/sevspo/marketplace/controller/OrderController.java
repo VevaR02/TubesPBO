@@ -29,7 +29,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    // Endpoint untuk membuat pesanan (sudah ada)
+    
     @PostMapping
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> createOrder(@RequestBody OrderRequest orderRequest, Authentication authentication) {
@@ -42,7 +42,7 @@ public class OrderController {
         }
     }
 
-    // --- ENDPOINT BARU UNTUK RIWAYAT PESANAN PENGGUNA ---
+    
     @GetMapping
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<List<Order>> getCurrentUserOrders(Authentication authentication) {
@@ -51,7 +51,7 @@ public class OrderController {
         return ResponseEntity.ok(orders);
     }
 
-    // --- ENDPOINT BARU UNTUK MANAJEMEN PESANAN ADMIN ---
+    
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Order>> getAllOrders() {
@@ -60,7 +60,7 @@ public class OrderController {
     }
 
     @PutMapping("/admin/{orderId}/status")
-    @PreAuthorize("hasRole('ADMIN')") // <-- INI PENTING UNTUK KEAMANAN!
+    @PreAuthorize("hasRole('ADMIN')") 
     public ResponseEntity<?> updateOrderStatus(
             @PathVariable Long orderId,
             @RequestBody UpdateStatusRequestDTO request) {
@@ -68,7 +68,7 @@ public class OrderController {
             orderService.updateOrderStatus(orderId, request.getStatus());
             return ResponseEntity.ok("Status pesanan berhasil diperbarui.");
         } catch (IllegalArgumentException e) {
-            // Ini terjadi jika status yang dikirim tidak ada di Enum OrderStatus
+            
             return ResponseEntity.badRequest().body("Error: Status tidak valid.");
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
