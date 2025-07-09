@@ -1,14 +1,11 @@
-// CartPage.js
-
 import React from "react"; // Hapus useState
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function CartPage() {
-  // --- DAPATKAN FUNGSI BARU DARI useCart ---
+ 
   const { cartItems, removeFromCart, updateCartItemQty } = useCart();
-  // ----------------------------------------
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -42,7 +39,7 @@ export default function CartPage() {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-4">
-            {/* --- MODIFIKASI TAMPILAN ITEM DI SINI --- */}
+            {}
             {cartItems.map((item) => (
               <div
                 key={item.id}
@@ -61,7 +58,7 @@ export default function CartPage() {
                   <p className="text-sm text-gray-600">
                     Rp{new Intl.NumberFormat("id-ID").format(item.price)}
                   </p>
-                  {/* Kontrol Kuantitas */}
+                  {}
                   <div className="flex items-center gap-2 mt-2">
                     <button
                       onClick={() => updateCartItemQty(item.id, item.qty - 1)}
