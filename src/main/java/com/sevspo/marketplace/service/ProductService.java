@@ -16,7 +16,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    // PERBAIKAN: Metode baru untuk pencarian dinamis
+    
     public List<Product> searchProducts(String keyword, Long categoryId) {
         Specification<Product> spec = (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
