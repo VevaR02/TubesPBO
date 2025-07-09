@@ -21,7 +21,7 @@ const Carousel = ({ items }) => {
   }
 
   return (
-    // Pastikan container ini memiliki class 'relative' dan TIDAK memiliki 'overflow-hidden'
+    
     <div className="w-full h-80 rounded-lg shadow-md relative">
       <Slider {...settings}>
         {items.map((item) => (
