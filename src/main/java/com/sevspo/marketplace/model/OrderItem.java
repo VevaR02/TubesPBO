@@ -1,6 +1,6 @@
 package com.sevspo.marketplace.model;
 
-import java.math.BigDecimal; // <-- IMPOR BARU
+import java.math.BigDecimal; 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -21,23 +21,21 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // --- PERBAIKAN UTAMA ---
-    // Anotasi ini menandakan bahwa ini adalah sisi "anak" dari relasi.
-    // Ini TIDAK akan disertakan dalam JSON untuk menghindari perulangan.
+    
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
-    // --- AKHIR PERBAIKAN ---
+    
 
-    @ManyToOne(fetch = FetchType.EAGER) // Ubah ke EAGER agar data produk selalu ikut
+    @ManyToOne(fetch = FetchType.EAGER) 
     @JoinColumn(name = "product_id")
     private Product product;
 
     private Integer quantity;
     private BigDecimal priceAtPurchase;
 
-    // Getters and Setters
+   
     public Long getId() {
         return id;
     }
