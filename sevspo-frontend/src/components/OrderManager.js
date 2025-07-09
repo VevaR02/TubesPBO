@@ -25,7 +25,6 @@ const OrderManager = () => {
   const handleStatusChange = async (orderId, newStatus) => {
     try {
       await api.put(`/orders/admin/${orderId}/status`, { status: newStatus });
-      // Muat ulang data setelah berhasil update
       fetchOrders();
     } catch (error) {
       alert("Gagal memperbarui status pesanan.");
