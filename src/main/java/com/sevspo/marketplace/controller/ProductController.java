@@ -27,7 +27,7 @@ public class ProductController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    // PERBAIKAN: Endpoint ini sekarang menerima parameter pencarian
+    
     @GetMapping
     public List<Product> getAllProducts(
             @RequestParam(required = false) String keyword,
