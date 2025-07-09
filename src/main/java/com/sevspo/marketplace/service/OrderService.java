@@ -35,7 +35,7 @@ public class OrderService {
 
         Order order = new Order();
         order.setUser(user);
-        order.setStatus(OrderStatus.PENDING); // Status awal adalah PENDING
+        order.setStatus(OrderStatus.PENDING); 
         order.setShippingAddress(orderRequest.getShippingAddress());
 
         List<OrderItem> orderItems = orderRequest.getItems().stream().map(itemDto -> {
@@ -52,10 +52,9 @@ public class OrderService {
             orderItem.setPriceAtPurchase(product.getPrice());
             orderItem.setOrder(order);
 
-            // Kurangi stok produk
+           
             product.setStock(product.getStock() - itemDto.getQuantity());
-            productRepository.save(product); // Simpan perubahan stok
-
+            productRepository.save(product); 
             return orderItem;
         }).collect(Collectors.toList());
 
@@ -69,26 +68,26 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    // --- FITUR BARU UNTUK PENGGUNA ---
+
     public List<Order> findOrdersByUsername(String username) {
         return orderRepository.findByUser_UsernameOrderByOrderDateDesc(username);
     }
 
-    // --- FITUR BARU UNTUK ADMIN ---
+  
     public List<Order> findAllOrders() {
         return orderRepository.findAllByOrderByOrderDateDesc();
     }
 
     @Transactional
     public Order updateOrderStatus(Long orderId, String paid) {
-        // Cari pesanan berdasarkan ID
+       
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Error: Pesanan tidak ditemukan dengan id: " + orderId));
 
-        // Ubah String menjadi Enum. Ini akan error jika string tidak valid.
+        
         OrderStatus statusEnum = OrderStatus.valueOf(paid.toUpperCase());
 
-        // Set status baru dan simpan
+       
         order.setStatus(statusEnum);
         return orderRepository.save(order);
     }
