@@ -53,13 +53,12 @@ public class CarouselItemController {
         CarouselItem itemDetails = objectMapper.readValue(itemStr, CarouselItem.class);
 
         return carouselItemRepository.findById(id).map(itemToUpdate -> {
-            // Update data teks dari request (ini sudah ada sebelumnya)
+            
             itemToUpdate.setTitle(itemDetails.getTitle());
             itemToUpdate.setSubtitle(itemDetails.getSubtitle());
             itemToUpdate.setActive(itemDetails.isActive());
 
-            // PERBAIKAN: Blok ini adalah kunci solusi masalah.
-            // Logika ini menangani file gambar yang baru diunggah.
+           
             if (file != null && !file.isEmpty()) {
                 System.out.println(">>> [DEBUG] trying to update file. Filename: " + file.getOriginalFilename()); // LOG 1
                 String fileName = fileStorageService.storeFile(file);
@@ -71,7 +70,7 @@ public class CarouselItemController {
                 itemToUpdate.setImageUrl(fileDownloadUri);
             }
 
-            // Simpan item yang sudah diperbarui (termasuk imageUrl jika ada perubahan)
+            
             CarouselItem updatedItem = carouselItemRepository.save(itemToUpdate);
             return ResponseEntity.ok(updatedItem);
         }).orElse(ResponseEntity.notFound().build());
