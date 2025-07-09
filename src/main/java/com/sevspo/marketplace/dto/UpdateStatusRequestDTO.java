@@ -4,7 +4,7 @@ public class UpdateStatusRequestDTO {
 
     private String status;
 
-    // Getters and Setters
+    
     public String getStatus() {
         return status;
     }
