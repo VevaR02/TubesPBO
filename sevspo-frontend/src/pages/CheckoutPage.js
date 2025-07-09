@@ -40,20 +40,20 @@ const CheckoutPage = () => {
     };
 
     try {
-      // 1. Buat pesanan di sistem kita
+      
       const orderResponse = await api.post("/orders", orderRequest);
       const newOrder = orderResponse.data;
 
-      // 2. Kosongkan keranjang belanja
+     
       clearCart();
 
-      // 3. Buat transaksi di payment gateway (simulasi)
+     
       const paymentResponse = await api.post("/payments/create-transaction", {
         orderId: newOrder.id,
       });
       const { paymentUrl } = paymentResponse.data;
 
-      // 4. Alihkan pengguna ke halaman pembayaran
+      
       window.location.href = paymentUrl;
     } catch (err) {
       setError(
