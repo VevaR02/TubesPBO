@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.sevspo.marketplace.model.OrderStatus;
 
-// DTO utama yang akan dikirim sebagai respons ke frontend
 public class OrderResponseDTO {
 
     private Long id;
