@@ -1,24 +1,20 @@
-// HomePage.js
-
 import React, { useState, useEffect } from "react";
 import api from "../services/api";
 import ProductCard from "../components/ProductCard";
 import Carousel from "../components/Carousel";
-import Gallery from "../components/Gallery"; // <-- TAMBAHKAN BARIS INI
+import Gallery from "../components/Gallery"; 
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [carouselItems, setCarouselItems] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [galleryImages, setGalleryImages] = useState([]); // <-- TAMBAHKAN BARIS INI
-  // State untuk filter
+  const [galleryImages, setGalleryImages] = useState([]); 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // PERBAIKAN: useEffect untuk mengambil produk berdasarkan filter
+ 
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -41,25 +37,25 @@ const HomePage = () => {
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        // Gunakan Promise.all untuk mengambil data secara paralel
+       
         const [carouselResponse, categoriesResponse, galleryResponse] =
           await Promise.all([
             api.get("/carousel-items"),
             api.get("/categories"),
-            api.get("/gallery-images"), // <-- TAMBAHKAN PERMINTAAN API INI
+            api.get("/gallery-images"), 
           ]);
 
         setCarouselItems(carouselResponse.data);
         setCategories(categoriesResponse.data);
-        setGalleryImages(galleryResponse.data); // <-- SIMPAN DATA KE STATE
+        setGalleryImages(galleryResponse.data); 
       } catch (err) {
-        // Perbarui pesan error agar lebih umum
+       
         setError("Gagal memuat data halaman awal.");
-        console.error(err); // Simpan log error untuk debugging
+        console.error(err); 
       }
     };
     fetchInitialData();
-  }, []); // Dependensi kosong berarti hanya berjalan sekali saat mount
+  }, []); 
 
   const heroData = carouselItems.length > 0 ? carouselItems[0] : {};
 
@@ -69,7 +65,7 @@ const HomePage = () => {
         <Carousel items={carouselItems} />
       </div>
 
-      {/* Bagian Filter dan Pencarian */}
+     
       <div className="mb-8 p-4 bg-white rounded-lg shadow-md flex flex-col sm:flex-row gap-4 items-center">
         <input
           type="text"
@@ -109,16 +105,15 @@ const HomePage = () => {
           </div>
         )
       )}
-      {/* Bagian Galeri */}
+     
       <div className="mt-16">
         {" "}
-        {/* Beri jarak dari bagian produk */}
+       
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-sevspo-dark">
             Galeri Poster Produk
           </h2>
         </div>
-        {/* Render komponen Gallery dengan data dari state */}
         <Gallery images={galleryImages} />
       </div>
     </div>
