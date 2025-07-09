@@ -7,7 +7,6 @@ class UserSummaryDTO {
         this.username = username;
     }
 
-    // Getter & Setter
     public String getUsername() {
         return username;
     }
