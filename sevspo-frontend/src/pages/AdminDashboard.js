@@ -3,8 +3,8 @@ import api from "../services/api";
 import { useSearchParams } from "react-router-dom";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
-import OrderManager from "../components/OrderManager"; // <-- IMPOR KOMPONEN BARU
-// Fungsi helper untuk cropping gambar di browser
+import OrderManager from "../components/OrderManager";
+
 function getCroppedImg(image, crop, fileName) {
   const canvas = document.createElement("canvas");
   const scaleX = image.naturalWidth / image.width;
@@ -40,7 +40,6 @@ function getCroppedImg(image, crop, fileName) {
   });
 }
 
-// Komponen terpisah untuk Manajemen Kategori
 const CategoryManager = () => {
   const [categories, setCategories] = useState([]);
   const [categoryName, setCategoryName] = useState("");
@@ -119,7 +118,6 @@ const CategoryManager = () => {
   );
 };
 
-// Komponen terpisah untuk Manajemen Produk
 const ProductManager = () => {
   const [products, setProducts] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -139,12 +137,9 @@ const ProductManager = () => {
   const [completedCrop, setCompletedCrop] = useState(null);
   const [croppedFile, setCroppedFile] = useState(null);
   const [categories, setCategories] = useState([]);
-
-  // PERBAIKAN: State untuk filter di admin dashboard
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
-
-  // PERBAIKAN: Fungsi fetchProducts sekarang menerima parameter filter
+  
   const fetchProducts = useCallback(async () => {
     try {
       const params = new URLSearchParams();
@@ -156,7 +151,7 @@ const ProductManager = () => {
     } catch (error) {
       console.error("Gagal memuat produk:", error);
     }
-  }, [searchTerm, selectedCategory]); // Tambahkan dependensi filter
+  }, [searchTerm, selectedCategory]);
 
   const fetchCategories = useCallback(async () => {
     try {
@@ -523,7 +518,6 @@ const CarouselManager = () => {
       );
       reader.readAsDataURL(e.target.files[0]);
       setIsCropperOpen(true);
-      // PERBAIKAN: Mengubah rasio aspek agar lebih lebar, sesuai tampilan homepage
       setCrop({ unit: "%", width: 50, aspect: 21 / 9 });
     }
   };
@@ -803,8 +797,8 @@ const GalleryManager = () => {
       });
       setNewImageFile(null);
       setNewImageCaption("");
-      document.getElementById("gallery-file-input").value = ""; // Reset input file
-      fetchImages(); // Muat ulang daftar gambar
+      document.getElementById("gallery-file-input").value = ""; 
+      fetchImages();
     } catch (error) {
       console.error("Gagal menambah gambar:", error);
       alert("Gagal menambah gambar baru.");
@@ -847,7 +841,7 @@ const GalleryManager = () => {
     <div className="bg-white p-8 rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Manajemen Galeri</h2>
 
-      {/* Form Tambah Gambar Baru */}
+      
       <form onSubmit={handleAddImage} className="space-y-4 mb-8 border-b pb-8">
         <h3 className="text-xl font-medium">Tambah Gambar ke Galeri</h3>
         <div>
@@ -884,7 +878,7 @@ const GalleryManager = () => {
         </button>
       </form>
 
-      {/* Form Edit Caption (Modal/Inline) */}
+     
       {isEditing && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <form
@@ -919,7 +913,7 @@ const GalleryManager = () => {
         </div>
       )}
 
-      {/* Daftar Gambar di Galeri */}
+     
       <h3 className="text-xl font-medium mt-8 mb-4">Daftar Gambar</h3>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {images.map((img) => (
@@ -955,14 +949,12 @@ const GalleryManager = () => {
     </div>
   );
 };
-// Komponen Utama AdminDashboard
-export default function AdminDashboard() {
-  // --- TAMBAHKAN LOGIKA INI ---
-  const [searchParams] = useSearchParams();
-  // Ambil nilai 'view' dari URL, jika tidak ada, default ke 'pesanan'
-  const activeView = searchParams.get("view") || "pesanan";
 
-  // Fungsi untuk me-render komponen yang aktif berdasarkan URL
+export default function AdminDashboard() {
+  
+  const [searchParams] = useSearchParams();
+ 
+  const activeView = searchParams.get("view") || "pesanan";
   const renderActiveView = () => {
     switch (activeView) {
       case "kategori":
@@ -978,16 +970,12 @@ export default function AdminDashboard() {
         return <OrderManager />;
     }
   };
-  // -----------------------------
 
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
-
-      {/* --- GANTI BAGIAN INI --- */}
-      {/* Hapus div pembungkus dan panggil fungsi render */}
       <div className="space-y-8">{renderActiveView()}</div>
-      {/* ------------------------ */}
+      {}
     </div>
   );
 }
