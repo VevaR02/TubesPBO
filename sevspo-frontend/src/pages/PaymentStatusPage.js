@@ -11,11 +11,11 @@ const PaymentStatusPage = () => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const orderId = params.get("order_id");
-    const transactionStatus = "settlement"; // Kita simulasikan selalu berhasil
+    const transactionStatus = "settlement"; 
 
     const processPayment = async () => {
       try {
-        // Simulasikan panggilan webhook dari payment gateway ke backend kita
+       
         await api.post("/payments/notification", {
           order_id: orderId,
           transaction_status: transactionStatus,
@@ -24,7 +24,6 @@ const PaymentStatusPage = () => {
         setStatus("success");
         setMessage("Pembayaran berhasil! Pesanan Anda sedang diproses.");
 
-        // Alihkan ke riwayat pesanan setelah beberapa detik
         setTimeout(() => {
           navigate("/orders");
         }, 3000);
