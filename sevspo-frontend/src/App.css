@@ -38,39 +38,28 @@
   }
 }
 
-/* Kustomisasi Posisi Panah dan Titik react-slick */
 
-/* Mengatur agar panah berada di dalam gambar */
 .slick-prev {
   left: 20px;
-  /* Pindahkan dari luar ke dalam */
   z-index: 10;
-  /* Pastikan di atas elemen lain */
 }
 
 .slick-next {
   right: 20px;
-  /* Pindahkan dari luar ke dalam */
   z-index: 10;
 }
 
-/* Mengatur agar titik berada di dalam gambar */
 .slick-dots {
   bottom: 10px;
-  /* Tarik ke atas agar masuk area gambar */
 }
 
-/* (Opsional) Mengubah warna titik agar lebih terlihat di atas gambar */
 .slick-dots li button:before {
   color: white;
   opacity: 0.5;
-  /* Opasitas untuk titik yang tidak aktif */
   font-size: 10px;
-  /* Ukuran titik */
 }
 
 .slick-dots li.slick-active button:before {
   opacity: 1;
-  /* Opasitas untuk titik yang aktif */
   color: white;
 }
