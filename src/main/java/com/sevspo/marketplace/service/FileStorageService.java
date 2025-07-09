@@ -1,6 +1,6 @@
 package com.sevspo.marketplace.service;
 
-import org.imgscalr.Scalr; // Impor library imgscalr
+import org.imgscalr.Scalr; 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO; // Impor untuk pemrosesan gambar
-import java.awt.image.BufferedImage; // Impor untuk pemrosesan gambar
+import javax.imageio.ImageIO; 
+import java.awt.image.BufferedImage; 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -21,7 +21,7 @@ import java.util.UUID;
 public class FileStorageService {
 
     private final Path fileStorageLocation;
-    private static final int TARGET_WIDTH = 1200; // Ukuran maksimum lebar/tinggi gambar
+    private static final int TARGET_WIDTH = 1200; 
     private static final int TARGET_HEIGHT = 1200;
 
     public FileStorageService(@Value("${file.upload-dir}") String uploadDir) {
@@ -40,7 +40,7 @@ public class FileStorageService {
                 throw new RuntimeException("Maaf! Nama file mengandung path yang tidak valid " + originalFileName);
             }
 
-            // PERBAIKAN: Proses resize gambar sebelum menyimpan
+
             BufferedImage originalImage = ImageIO.read(file.getInputStream());
             BufferedImage resizedImage = Scalr.resize(originalImage, Scalr.Method.QUALITY, Scalr.Mode.AUTOMATIC, TARGET_WIDTH, TARGET_HEIGHT, Scalr.OP_ANTIALIAS);
 
@@ -48,16 +48,16 @@ public class FileStorageService {
             try {
                 fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
             } catch (Exception e) {
-                fileExtension = ".jpg"; // Default ke jpg jika tidak ada ekstensi
+                fileExtension = ".jpg"; 
             }
-            // Pastikan ekstensi adalah format yang didukung (jpg/png)
+            
             String outputFormat = (fileExtension.equalsIgnoreCase(".png")) ? "png" : "jpg";
 
             String newFileName = UUID.randomUUID().toString() + "." + outputFormat;
             Path targetLocation = this.fileStorageLocation.resolve(newFileName);
             System.out.println(">>> [DEBUG] Attempting to save file to: " + targetLocation.toString()); // LOG 3
 
-// Simpan gambar yang sudah di-resize
+
             boolean success = ImageIO.write(resizedImage, outputFormat, targetLocation.toFile()); // Tangkap status
             System.out.println(">>> [DEBUG] ImageIO.write success status: " + success); // LOG 4
 
