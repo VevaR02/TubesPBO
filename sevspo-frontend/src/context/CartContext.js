@@ -1,5 +1,3 @@
-// diasumsikan ada di src/context/CartContext.js
-
 import React, { createContext, useState, useContext, useEffect } from "react";
 
 const CartContext = createContext();
@@ -37,9 +35,9 @@ export const CartProvider = ({ children }) => {
     setCartItems((prevItems) => prevItems.filter((x) => x.id !== productId));
   };
 
-  // --- TAMBAHKAN FUNGSI INI ---
+  
   const updateCartItemQty = (productId, newQty) => {
-    // Pastikan kuantitas baru tidak kurang dari 1
+   
     const quantity = Math.max(1, newQty);
 
     setCartItems((prevItems) =>
@@ -48,7 +46,7 @@ export const CartProvider = ({ children }) => {
       )
     );
   };
-  // -----------------------------
+ 
 
   const clearCart = () => {
     setCartItems([]);
@@ -59,7 +57,7 @@ export const CartProvider = ({ children }) => {
     addToCart,
     removeFromCart,
     clearCart,
-    updateCartItemQty, // <-- Ekspor fungsi baru
+    updateCartItemQty, 
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
